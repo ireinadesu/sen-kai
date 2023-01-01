@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const initialState: HeaderSliceState = { current_url: '/' }
+const initialState: HeaderSliceState = { current_url: '/recommend' }
 
 const headerSlice = createSlice({
     name: 'header',

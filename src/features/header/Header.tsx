@@ -2,31 +2,34 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { PlaySquareOutlined, LikeTwoTone } from '@ant-design/icons'
 import PropTypes from 'prop-types'
-import type { MenuProps } from 'antd'
+import { Layout, MenuProps } from 'antd'
 import { Menu } from 'antd'
 
 import { HeaderSliceState, actions } from '@/features/header/headerSlice'
 import { AppDispatch } from '@/app/store'
+import SHeaderCss from '@/features/header/Header.module.scss'
+
+const { Header } = Layout;
 
 const items: MenuProps['items'] = [
     {
         label: '推荐',
-        key: 'recommend',
+        key: '/recommend',
         icon: <LikeTwoTone />,
     },
     {
         label: '动漫',
-        key: 'anime',
+        key: '/anime',
         icon: <PlaySquareOutlined />,
     },
     {
         label: '剧场版',
-        key: 'palgantong',
+        key: '/palgantong',
         icon: <PlaySquareOutlined />,
     },
     {
         label: '经典番剧',
-        key: 'classicDrama',
+        key: '/classicDrama',
         icon: <PlaySquareOutlined />,
     },
 ];
@@ -37,7 +40,11 @@ const SHeader: React.FC = (props: any) => {
         props.changeUrlToRecommend({ current_url: e.key })
     }
 
-    return <Menu onClick={onClick} selectedKeys={[props.current_url]} mode="horizontal" items={items} />
+    return (
+        <Header className={SHeaderCss['s-header']}>
+            <Menu onClick={onClick} selectedKeys={[props.current_url]} mode="horizontal" items={items} />
+        </Header>
+    )
 }
 
 SHeader.propTypes = {

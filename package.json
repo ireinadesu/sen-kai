@@ -44,6 +44,7 @@
     ]
   },
   "devDependencies": {
-    "@types/node": "^18.11.18"
+    "@types/node": "^18.11.18",
+    "node-sass": "^8.0.0"
   }
 }
