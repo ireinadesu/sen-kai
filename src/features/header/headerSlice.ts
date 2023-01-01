@@ -14,7 +14,10 @@ const headerSlice = createSlice({
     }
 })
 
-export type HeaderSliceState = { current_url: string }
+export type HeaderSliceState = {
+    [x: string]: any;
+    current_url: string
+}
 
 export const { changeUrlToRecommend } = headerSlice.actions
 

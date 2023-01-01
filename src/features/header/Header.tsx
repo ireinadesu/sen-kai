@@ -43,11 +43,11 @@ const SHeader: React.FC = (props) => {
 }
 
 SHeader.propTypes = {
-    state: PropTypes.any
+    current_url: PropTypes.string
 }
 
 const mapStateToProps = (state: HeaderSliceState) => ({
-    recommendState: state
+    current_url: state.headerReducer.current_url
 })
 
 const mapDispatchToProps = {
