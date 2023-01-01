@@ -7,8 +7,6 @@ const headerSlice = createSlice({
     initialState,
     reducers: {
         changeUrlToRecommend: (state, action) => {
-            console.log("changeUrlToRecommend");
-
             state.current_url = action.payload.current_url
         }
     }
@@ -19,6 +17,7 @@ export type HeaderSliceState = {
     current_url: string
 }
 
-export const { changeUrlToRecommend } = headerSlice.actions
+// export const { changeUrlToRecommend } = headerSlice.actions
 
 export default headerSlice.reducer;
+export const { actions, reducer } = headerSlice

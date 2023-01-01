@@ -1,11 +1,12 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
 import { PlaySquareOutlined, LikeTwoTone } from '@ant-design/icons'
 import PropTypes from 'prop-types'
 import type { MenuProps } from 'antd'
 import { Menu } from 'antd'
 
-import { changeUrlToRecommend, HeaderSliceState } from '@/features/header/headerSlice'
+import { HeaderSliceState, actions } from '@/features/header/headerSlice'
+import { AppDispatch } from '@/app/store'
 
 const items: MenuProps['items'] = [
     {
@@ -29,29 +30,28 @@ const items: MenuProps['items'] = [
         icon: <PlaySquareOutlined />,
     },
 ];
-const SHeader: React.FC = (props) => {
-
-    const [current, setCurrent] = useState('mail');
+const SHeader: React.FC = (props: any) => {
+    console.log(props);
 
     const onClick: MenuProps['onClick'] = (e: { key: any; }) => {
-        // console.log('click ', e)
-        console.log(props);
-        setCurrent(e.key)
+        props.changeUrlToRecommend({ current_url: e.key })
     }
 
-    return <Menu onClick={onClick} selectedKeys={[current]} mode="horizontal" items={items} />
+    return <Menu onClick={onClick} selectedKeys={[props.current_url]} mode="horizontal" items={items} />
 }
 
 SHeader.propTypes = {
     current_url: PropTypes.string
 }
 
-const mapStateToProps = (state: HeaderSliceState) => ({
-    current_url: state.headerReducer.current_url
-})
+const mapStateToProps = (state: HeaderSliceState) => ({ current_url: state.headerReducer.current_url })
 
-const mapDispatchToProps = {
-    changeUrlToRecommend
+const mapDispatchToProps = (dispatch: AppDispatch) => {
+    return {
+        changeUrlToRecommend: (str: HeaderSliceState) => {
+            dispatch(actions.changeUrlToRecommend(str))
+        }
+    }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(SHeader)
