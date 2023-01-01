@@ -1,8 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-type SliceState = { current_url: string }
-
-const initialState: SliceState = { current_url: '/' }
+const initialState: HeaderSliceState = { current_url: '/' }
 
 const headerSlice = createSlice({
     name: 'header',
@@ -11,10 +9,12 @@ const headerSlice = createSlice({
         changeUrlToRecommend: (state, action) => {
             console.log("changeUrlToRecommend");
 
-            state.current_url = '/recommend'
+            state.current_url = action.payload.current_url
         }
     }
 })
+
+export type HeaderSliceState = { current_url: string }
 
 export const { changeUrlToRecommend } = headerSlice.actions
 

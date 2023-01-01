@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 import type { MenuProps } from 'antd'
 import { Menu } from 'antd'
 
-import { changeUrlToRecommend } from '@/features/header/headerSlice'
+import { changeUrlToRecommend, HeaderSliceState } from '@/features/header/headerSlice'
 
 const items: MenuProps['items'] = [
     {
@@ -43,11 +43,11 @@ const SHeader: React.FC = (props) => {
 }
 
 SHeader.propTypes = {
-    current_url: PropTypes.string
+    state: PropTypes.any
 }
 
-const mapStateToProps = (state: { current_url: string }) => ({
-    current_url: state.current_url
+const mapStateToProps = (state: HeaderSliceState) => ({
+    recommendState: state
 })
 
 const mapDispatchToProps = {
