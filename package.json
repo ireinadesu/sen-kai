@@ -45,6 +45,7 @@
   },
   "devDependencies": {
     "@types/node": "^18.11.18",
+    "@types/styled-components": "^5.1.26",
     "node-sass": "^8.0.0"
   }
 }
