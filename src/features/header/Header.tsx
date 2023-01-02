@@ -2,14 +2,15 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { PlaySquareOutlined, LikeTwoTone, UserOutlined, UserAddOutlined, MoreOutlined } from '@ant-design/icons'
 import PropTypes from 'prop-types'
-import { Menu, Layout, MenuProps, FloatButton, Input, Space } from 'antd'
+import { Menu, Layout, MenuProps, FloatButton } from 'antd'
 
 import { HeaderSliceState, actions } from '@/features/header/headerSlice'
-import { AppDispatch } from '@/app/store'
+import { AppDispatch, RootState } from '@/app/store'
 import SHeaderCss from '@/features/header/Header.module.scss'
+import Search from '@/features/search/Search'
 
 const { Header } = Layout;
-const { Search } = Input;
+
 const items: MenuProps['items'] = [
     {
         label: '推荐',
@@ -32,14 +33,14 @@ const items: MenuProps['items'] = [
         icon: <PlaySquareOutlined />,
     }
 ];
-const onSearch = (value: string) => console.log(value);
+
+
 const SHeader: React.FC = (props: any) => {
     const onClick: MenuProps['onClick'] = (e: { key: any; }) => {
-        props.changeUrlToRecommend({ current_url: e.key })
+        props.changeUrl({ current_url: e.key })
     }
 
     return (
-
         <Header className={SHeaderCss['s-header']}>
             <FloatButton.Group
                 trigger="click"
@@ -54,8 +55,7 @@ const SHeader: React.FC = (props: any) => {
                 <FloatButton description='更多' icon={<MoreOutlined />} shape='square' />
             </FloatButton.Group>
             <Menu onClick={onClick} selectedKeys={[props.current_url]} mode="horizontal" items={items} />
-            <Space direction="vertical"><Search placeholder="input search text" onSearch={onSearch} enterButton /></Space>
-
+            <Search />
         </Header>
     )
 }
@@ -64,12 +64,12 @@ SHeader.propTypes = {
     current_url: PropTypes.string
 }
 
-const mapStateToProps = (state: HeaderSliceState) => ({ current_url: state.headerReducer.current_url })
+const mapStateToProps = (state: RootState) => ({ current_url: state.headerReducer.current_url })
 
 const mapDispatchToProps = (dispatch: AppDispatch) => {
     return {
-        changeUrlToRecommend: (payload: HeaderSliceState) => {
-            dispatch(actions.changeUrlToRecommend(payload))
+        changeUrl: (payload: HeaderSliceState) => {
+            dispatch(actions.changeUrl(payload))
         }
     }
 }

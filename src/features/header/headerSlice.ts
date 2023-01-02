@@ -1,23 +1,22 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+export interface HeaderSliceState {
+    [x: string]: any;
+    current_url: string
+}
+
 const initialState: HeaderSliceState = { current_url: '/recommend' }
 
 const headerSlice = createSlice({
     name: 'header',
     initialState,
     reducers: {
-        changeUrlToRecommend: (state, action) => {
-            state.current_url = action.payload.current_url
+        changeUrl: (state, action) => {
+            return { ...state, current_url: action.payload.current_url }
         }
     }
 })
 
-export type HeaderSliceState = {
-    [x: string]: any;
-    current_url: string
-}
-
-// export const { changeUrlToRecommend } = headerSlice.actions
 
 export default headerSlice.reducer;
-export const { actions, reducer } = headerSlice
+export const { actions } = headerSlice
