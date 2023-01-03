@@ -7,7 +7,7 @@ import { createSlice } from '@reduxjs/toolkit';
 * @author:iReina
 * @Date:2023-01-03 10:23:03
 */
-const initialState: routerSliceState = { current_url: '/recommend' }
+const initialState: routerSliceState = { currentUrl: '/recommend' }
 
 /**
  *@Description: 创建切片
@@ -19,7 +19,7 @@ const routerSlice = createSlice({
     initialState,
     reducers: {
         changeUrl: (state, action) => {
-            return { ...state, current_url: action.payload.current_url }
+            return { ...state, currentUrl: action.payload.currentUrl }
         }
     }
 })

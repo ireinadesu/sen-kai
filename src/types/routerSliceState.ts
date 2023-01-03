@@ -5,5 +5,5 @@
 */
 export interface routerSliceState {
     [x: string]: any;
-    current_url: string
+    currentUrl: string
 }

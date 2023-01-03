@@ -1,16 +1,13 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { PlaySquareOutlined, LikeTwoTone, UserOutlined, UserAddOutlined, MoreOutlined } from '@ant-design/icons'
-
 import { Menu, Layout, MenuProps, FloatButton } from 'antd'
 
 import { actions } from '@/features/router/routerSlice'
 import { AppDispatch, RootState } from '@/app/store'
-import SHeaderCss from './Header.module.scss'
 import Search from '@/containers/Search/Search'
 import { routerSliceState } from '@/types/routerSliceState'
-
-const { Header } = Layout;
+import SHeaderCss from './Header.module.scss'
 
 const items: MenuProps['items'] = [
     {
@@ -37,11 +34,11 @@ const items: MenuProps['items'] = [
 
 const SHeader: React.FC = (props: any) => {
     const onClick: MenuProps['onClick'] = (e: { key: any; }) => {
-        props.changeUrl({ current_url: e.key })
+        props.changeUrl({ currentUrl: e.key })
     }
 
     return (
-        <Header className={SHeaderCss['s-header']}>
+        <Layout.Header className={SHeaderCss['s-header']}>
             <FloatButton.Group
                 trigger="click"
                 type="primary"
@@ -54,13 +51,13 @@ const SHeader: React.FC = (props: any) => {
                 {/* <FloatButton description='退出' icon={<LogoutOutlined />} shape='square' /> */}
                 <FloatButton description='更多' icon={<MoreOutlined />} shape='square' />
             </FloatButton.Group>
-            <Menu onClick={onClick} selectedKeys={[props.current_url]} mode="horizontal" items={items} />
+            <Menu onClick={onClick} selectedKeys={[props.currentUrl]} mode="horizontal" items={items} />
             <Search />
-        </Header>
+        </Layout.Header>
     )
 }
 
-const mapStateToProps = (state: RootState) => ({ current_url: state.router.current_url })
+const mapStateToProps = (state: RootState) => ({ currentUrl: state.router.currentUrl })
 
 const mapDispatchToProps = (dispatch: AppDispatch) => {
     return {

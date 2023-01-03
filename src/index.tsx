@@ -1,13 +1,13 @@
-import React from 'react';
-import zhCN from 'antd/locale/zh_CN';
-import ReactDOM from 'react-dom/client';
+import React from 'react'
+import zhCN from 'antd/locale/zh_CN'
+import ReactDOM from 'react-dom/client'
+import { Provider } from 'react-redux'
+import { ConfigProvider } from 'antd'
+import { PersistGate } from 'redux-persist/integration/react'
 
-import reportWebVitals from './reportWebVitals';
-import { Provider } from 'react-redux';
-import { persistor, store } from '@/app/store';
-import App from './app/App';
-import { ConfigProvider } from 'antd';
-import { PersistGate } from 'redux-persist/integration/react';
+import App from './app/App'
+import { persistor, store } from '@/app/store'
+import reportWebVitals from './reportWebVitals'
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
