@@ -1,5 +1,5 @@
-import { historySliceState } from "@/types/historySliceState";
-import { createSlice } from "@reduxjs/toolkit";
+import { historySliceState } from "@/types/historySliceState"
+import { createSlice } from "@reduxjs/toolkit"
 
 const initialState: historySliceState[] = [
     { id: '1', title: '魔女之旅' },
@@ -27,5 +27,5 @@ const historySlice = createSlice({
     },
 })
 
-export default historySlice.reducer;
+export default historySlice.reducer
 export const { actions } = historySlice

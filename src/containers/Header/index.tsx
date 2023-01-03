@@ -5,36 +5,39 @@ import { Menu, Layout, MenuProps, FloatButton } from 'antd'
 
 import { actions } from '@/features/router/routerSlice'
 import { AppDispatch, RootState } from '@/app/store'
-import Search from '@/containers/Search/Search'
+import Search from '@/containers/Search'
 import { routerSliceState } from '@/types/routerSliceState'
 import SHeaderCss from './Header.module.scss'
+import { router } from '@/router'
 
-const items: MenuProps['items'] = [
-    {
-        label: '推荐',
-        key: '/recommend',
-        icon: <LikeTwoTone />,
-    },
-    {
-        label: '动漫',
-        key: '/anime',
-        icon: <PlaySquareOutlined />,
-    },
-    {
-        label: '剧场版',
-        key: '/palgantong',
-        icon: <PlaySquareOutlined />,
-    },
-    {
-        label: '经典番剧',
-        key: '/classicDrama',
-        icon: <PlaySquareOutlined />,
-    }
-];
 
 const SHeader: React.FC = (props: any) => {
+    const items: MenuProps['items'] = [
+        {
+            label: '推荐',
+            key: '/recommend',
+            icon: <LikeTwoTone />,
+        },
+        {
+            label: '动漫',
+            key: '/anime',
+            icon: <PlaySquareOutlined />,
+        },
+        {
+            label: '剧场版',
+            key: '/palgantong',
+            icon: <PlaySquareOutlined />,
+        },
+        {
+            label: '经典番剧',
+            key: '/classicDrama',
+            icon: <PlaySquareOutlined />,
+        }
+    ];
+
     const onClick: MenuProps['onClick'] = (e: { key: any; }) => {
         props.changeUrl({ currentUrl: e.key })
+        router(e.key)
     }
 
     return (

@@ -8,16 +8,25 @@ import { PersistGate } from 'redux-persist/integration/react'
 import App from './app/App'
 import { persistor, store } from '@/app/store'
 import reportWebVitals from './reportWebVitals'
-
+import Routers from '@/router'
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
+
 root.render(
   <React.StrictMode>
     <ConfigProvider locale={zhCN}>
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
-          <App />
+          <Router>
+            
+            {/* <Routes>
+              <Route path='/' element={<App/>}/>
+            </Routes> */}
+            {Routers()}
+          </Router>
         </PersistGate>
       </Provider>
     </ConfigProvider>

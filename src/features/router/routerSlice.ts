@@ -1,5 +1,5 @@
-import { routerSliceState } from '@/types/routerSliceState';
-import { createSlice } from '@reduxjs/toolkit';
+import { routerSliceState } from '@/types/routerSliceState'
+import { createSlice } from '@reduxjs/toolkit'
 
 
 /**
@@ -36,4 +36,4 @@ export const { actions } = routerSlice
 * @author:iReina
 * @Date:2023-01-03 10:26:31
 */
-export default routerSlice.reducer;
+export default routerSlice.reducer
