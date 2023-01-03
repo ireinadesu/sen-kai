@@ -1,10 +1,10 @@
-import { combineReducers, configureStore } from "@reduxjs/toolkit"
+import { configureStore } from "@reduxjs/toolkit"
 import { useDispatch } from 'react-redux'
-import { persistStore, persistReducer } from 'redux-persist'
+import { persistStore, persistReducer, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
 
-import headerReducer from '@/features/header/headerSlice'
-import searchReducer from '@/features/search/searchSlice'
+import rootReducer from "./rootReducer"
+
 /**
  *@Description: 持久化配置
 * @author:iReina
@@ -12,18 +12,8 @@ import searchReducer from '@/features/search/searchSlice'
 */
 const persistConfig = {
     key: 'root',
-    storage: storage
+    storage
 }
-
-/**
- *@Description: 合并reducer
-* @author:iReina
-* @Date:2023-01-02 23:17:21
-*/
-const rootReducer = combineReducers({
-    headerReducer,
-    searchReducer
-})
 
 /**
  *@Description: 暴露state类型
@@ -47,7 +37,11 @@ const persistedReducer = persistReducer(persistConfig, rootReducer)
 export const store = configureStore(
     {
         reducer: persistedReducer,
-        middleware: (getDefaultMiddleware) => getDefaultMiddleware({ serializableCheck: false, }),
+        middleware: (getDefaultMiddleware) => getDefaultMiddleware({
+            serializableCheck: {
+                ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER]
+            },
+        }),
     }
 )
 
@@ -59,7 +53,7 @@ export const store = configureStore(
 export const persistor = persistStore(store)
 
 /**
- *@Description: 暴露store类型
+ *@Description: 暴露dispatch类型
 * @author:iReina
 * @Date:2023-01-02 23:13:52
 */

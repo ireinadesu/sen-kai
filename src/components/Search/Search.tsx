@@ -1,19 +1,17 @@
 import { AutoComplete, Button, Input, Space } from 'antd'
-import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { DeleteOutlined } from '@ant-design/icons'
 
-import SearchCss from '@/features/search/Search.module.scss'
-import { actions, SearchSliceState } from './searchSlice'
+import SearchCss from './Search.module.scss'
+import { actions, historySliceState } from '../../features/history/historySlice'
 import { AppDispatch, RootState } from '@/app/store'
 
 const Search = (props: any) => {
 
-
     const options = [
         {
             label: (<div>搜索记录</div>),
-            options: props.history.map((h: SearchSliceState) => {
+            options: props.history.map((h: historySliceState) => {
                 return ({
                     value: h.title,
                     label: (
@@ -40,20 +38,16 @@ const Search = (props: any) => {
     )
 }
 
-Search.propTypes = {
-
-}
-
 const mapStateToProps = (state: RootState) => ({
-    history: state.searchReducer
+    history: state.history
 })
 
 const mapDispatchToProps = (dispatch: AppDispatch) => {
     return {
-        insert: (payload: SearchSliceState) => {
+        insert: (payload: historySliceState) => {
             dispatch(actions.insert(payload))
         },
-        delete: (payload: SearchSliceState) => {
+        delete: (payload: historySliceState) => {
             dispatch(actions.delete(payload))
         }
     }

@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Layout } from 'antd';
 
-import SHeader from '@/features/header/Header'
+import SHeader from '@/components/Header/Header'
 
 const { Footer, Content } = Layout;
 

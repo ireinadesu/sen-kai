@@ -1,13 +1,13 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { PlaySquareOutlined, LikeTwoTone, UserOutlined, UserAddOutlined, MoreOutlined } from '@ant-design/icons'
-import PropTypes from 'prop-types'
+
 import { Menu, Layout, MenuProps, FloatButton } from 'antd'
 
-import { HeaderSliceState, actions } from '@/features/header/headerSlice'
+import { routerSliceState, actions } from '@/features/router/routerSlice'
 import { AppDispatch, RootState } from '@/app/store'
-import SHeaderCss from '@/features/header/Header.module.scss'
-import Search from '@/features/search/Search'
+import SHeaderCss from './Header.module.scss'
+import Search from '@/components/Search/Search'
 
 const { Header } = Layout;
 
@@ -34,7 +34,6 @@ const items: MenuProps['items'] = [
     }
 ];
 
-
 const SHeader: React.FC = (props: any) => {
     const onClick: MenuProps['onClick'] = (e: { key: any; }) => {
         props.changeUrl({ current_url: e.key })
@@ -60,15 +59,11 @@ const SHeader: React.FC = (props: any) => {
     )
 }
 
-SHeader.propTypes = {
-    current_url: PropTypes.string
-}
-
-const mapStateToProps = (state: RootState) => ({ current_url: state.headerReducer.current_url })
+const mapStateToProps = (state: RootState) => ({ current_url: state.router.current_url })
 
 const mapDispatchToProps = (dispatch: AppDispatch) => {
     return {
-        changeUrl: (payload: HeaderSliceState) => {
+        changeUrl: (payload: routerSliceState) => {
             dispatch(actions.changeUrl(payload))
         }
     }
