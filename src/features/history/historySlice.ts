@@ -1,6 +1,5 @@
+import { historySliceState } from "@/types/historySliceState";
 import { createSlice } from "@reduxjs/toolkit";
-
-export interface historySliceState { readonly id: string, title: string }
 
 const initialState: historySliceState[] = [
     { id: '1', title: '魔女之旅' },

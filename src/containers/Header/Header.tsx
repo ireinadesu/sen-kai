@@ -4,10 +4,11 @@ import { PlaySquareOutlined, LikeTwoTone, UserOutlined, UserAddOutlined, MoreOut
 
 import { Menu, Layout, MenuProps, FloatButton } from 'antd'
 
-import { routerSliceState, actions } from '@/features/router/routerSlice'
+import { actions } from '@/features/router/routerSlice'
 import { AppDispatch, RootState } from '@/app/store'
 import SHeaderCss from './Header.module.scss'
-import Search from '@/components/Search/Search'
+import Search from '@/containers/Search/Search'
+import { routerSliceState } from '@/types/routerSliceState'
 
 const { Header } = Layout;
 

@@ -1,13 +1,6 @@
+import { routerSliceState } from '@/types/routerSliceState';
 import { createSlice } from '@reduxjs/toolkit';
-/**
- *@Description: 定义当前切片的state类型
-* @author:iReina
-* @Date:2023-01-03 10:22:15
-*/
-export interface routerSliceState {
-    [x: string]: any;
-    current_url: string
-}
+
 
 /**
  *@Description: 初始化切片state

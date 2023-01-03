@@ -3,8 +3,9 @@ import { connect } from 'react-redux'
 import { DeleteOutlined } from '@ant-design/icons'
 
 import SearchCss from './Search.module.scss'
-import { actions, historySliceState } from '../../features/history/historySlice'
+import { actions } from '../../features/history/historySlice'
 import { AppDispatch, RootState } from '@/app/store'
+import { historySliceState } from '@/types/historySliceState'
 
 const Search = (props: any) => {
 
