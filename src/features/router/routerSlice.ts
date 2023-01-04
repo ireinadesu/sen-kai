@@ -7,7 +7,7 @@ import { createSlice } from '@reduxjs/toolkit'
 * @author:iReina
 * @Date:2023-01-03 10:23:03
 */
-const initialState: routerSliceState = { currentUrl: '/recommend' }
+const initialState: routerSliceState = { currentUrl: 'recommend' }
 
 /**
  *@Description: 创建切片

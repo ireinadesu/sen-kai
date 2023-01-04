@@ -4,13 +4,11 @@ import ReactDOM from 'react-dom/client'
 import { Provider } from 'react-redux'
 import { ConfigProvider } from 'antd'
 import { PersistGate } from 'redux-persist/integration/react'
-
-import App from './app/App'
 import { persistor, store } from '@/app/store'
 import reportWebVitals from './reportWebVitals'
+import { BrowserRouter as Router } from 'react-router-dom'
+
 import Routers from '@/router'
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
-import { Link } from 'react-router-dom'
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
@@ -21,10 +19,6 @@ root.render(
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
           <Router>
-            
-            {/* <Routes>
-              <Route path='/' element={<App/>}/>
-            </Routes> */}
             {Routers()}
           </Router>
         </PersistGate>

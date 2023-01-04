@@ -2,7 +2,6 @@ import { AutoComplete, Button, Input, Space } from 'antd'
 import { connect } from 'react-redux'
 import { DeleteOutlined } from '@ant-design/icons'
 
-import SearchCss from './Search.module.scss'
 import { actions } from '../../features/history/historySlice'
 import { AppDispatch, RootState } from '@/app/store'
 import { historySliceState } from '@/types/historySliceState'
@@ -28,12 +27,14 @@ const Search = (props: any) => {
         }
     ]
 
-    const onSearch = (value: string) => console.log(value);
+    const onSearch = (value: string) => {
+
+    };
 
     return (
         <Space>
-            <AutoComplete popupClassName="certain-category-search-dropdown" style={{ width: 250 }} options={options}>
-                <Input.Search className={SearchCss['search']} placeholder="今天看点什么好呢..." onSearch={onSearch} enterButton />
+            <AutoComplete popupClassName="certain-category-search-dropdown" options={options}>
+                <Input.Search placeholder="今天看点什么好呢..." onSearch={onSearch} enterButton />
             </AutoComplete>
         </Space>
     )

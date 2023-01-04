@@ -1,11 +1,23 @@
 import { historySliceState } from "@/types/historySliceState"
 import { createSlice } from "@reduxjs/toolkit"
 
+/**
+ *@Description: 初始化切片state
+* @author:iReina
+* @Date:2023-01-03 10:23:03
+*/
 const initialState: historySliceState[] = [
     { id: '1', title: '魔女之旅' },
     { id: '2', title: '虫师' },
     { id: '3', title: '影之宅' }
 ]
+
+/**
+ *@Description: 创建切片
+* @author:iReina
+* @Date:2023-01-03 10:26:18
+*/
+
 
 const historySlice = createSlice({
     name: 'history',
@@ -27,5 +39,16 @@ const historySlice = createSlice({
     },
 })
 
-export default historySlice.reducer
+/**
+ *@Description: 暴露actions
+* @author:iReina
+* @Date:2023-01-03 10:27:13
+*/
 export const { actions } = historySlice
+
+/**
+ *@Description: 默认暴露reducer
+* @author:iReina
+* @Date:2023-01-03 10:26:31
+*/
+export default historySlice.reducer
