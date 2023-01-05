@@ -4,6 +4,6 @@
 * @Date:2023-01-03 11:31:27
 */
 export interface historySliceState {
-    readonly id: string,
+    id: number,
     title: string
 }

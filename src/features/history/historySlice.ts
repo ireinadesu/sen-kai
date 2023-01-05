@@ -7,9 +7,9 @@ import { createSlice } from "@reduxjs/toolkit"
 * @Date:2023-01-03 10:23:03
 */
 const initialState: historySliceState[] = [
-    { id: '1', title: '魔女之旅' },
-    { id: '2', title: '虫师' },
-    { id: '3', title: '影之宅' }
+    // { id: 0, title: '魔女之旅' },
+    // { id: 1, title: '虫师' },
+    // { id: 2, title: '影之宅' }
 ]
 
 /**
@@ -21,16 +21,25 @@ const initialState: historySliceState[] = [
 
 const historySlice = createSlice({
     name: 'history',
-    initialState,
+    initialState: initialState.reverse(),
     reducers: {
         insert: (state, action) => {
-            return [...state, { id: '4', title: '想要成为影之实力者' }]
+            let flag = false
+            state.map((history) => {
+                if (history.title.trim() === action.payload.title.trim()) flag = true
+                return history
+            })
+            if (flag) return state
+            const newState: historySliceState[] = JSON.parse(JSON.stringify(state))
+            newState.push({ id: newState.length !== 0 ? newState[newState.length - 1].id + 1 : 0, title: action.payload.title })
+            return newState
         },
         delete: (state, action) => {
             const newState: historySliceState[] = []
             state.map((history) => {
                 if (history.id !== action.payload.id) {
                     newState.push({ id: history.id, title: history.title })
+                    if (newState[newState.length - 1].id > action.payload.id) newState[newState.length - 1].id--
                 }
                 return history
             })

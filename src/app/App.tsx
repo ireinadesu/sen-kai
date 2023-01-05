@@ -4,7 +4,6 @@ import { FloatButton, Layout } from 'antd'
 import { UserOutlined, UserAddOutlined, MoreOutlined } from '@ant-design/icons'
 import Header from '@/containers/Header'
 import { Outlet } from "react-router-dom"
-import Search from '@/containers/Search'
 
 const { Footer, Content } = Layout;
 
@@ -13,7 +12,6 @@ const App: React.FC = () => (
     <Layout className="layout">
       <Header />
       <Content>
-        <Search />
         <Outlet />
       </Content>
       <Footer>

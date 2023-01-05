@@ -1,4 +1,4 @@
-import { AutoComplete, Button, Input, Space } from 'antd'
+import { AutoComplete, Button, Drawer, Input, Space } from 'antd'
 import { connect } from 'react-redux'
 import { DeleteOutlined } from '@ant-design/icons'
 
@@ -6,7 +6,14 @@ import { actions } from '../../features/history/historySlice'
 import { AppDispatch, RootState } from '@/app/store'
 import { historySliceState } from '@/types/historySliceState'
 
+import { useNavigate } from 'react-router-dom'
+
 const Search = (props: any) => {
+
+    const router = useNavigate()
+    const onClose = () => {
+        router(-1)
+    }
 
     const options = [
         {
@@ -15,10 +22,10 @@ const Search = (props: any) => {
                 return ({
                     value: h.title,
                     label: (
-                        <div style={{ display: 'flex', justifyContent: 'space-between', }}>
+                        <div key={h.id} style={{ display: 'flex', justifyContent: 'space-between', }}>
                             {h.title}
                             <span>
-                                <Button onClick={(event) => { props.delete(h); event.stopPropagation() }} ghost={true} type="primary" shape="circle" icon={<DeleteOutlined />} />
+                                <Button key={h.id} onClick={(event) => { props.delete(h); event.stopPropagation() }} ghost={true} type="primary" shape="circle" icon={<DeleteOutlined />} />
                             </span>
                         </div>
                     ),
@@ -28,15 +35,17 @@ const Search = (props: any) => {
     ]
 
     const onSearch = (value: string) => {
-
-    };
+        props.insert({ id: null, title: value })
+    }
 
     return (
-        <Space>
-            <AutoComplete popupClassName="certain-category-search-dropdown" options={options}>
-                <Input.Search placeholder="今天看点什么好呢..." onSearch={onSearch} enterButton />
-            </AutoComplete>
-        </Space>
+        <Drawer title='搜索' placement={'left'} closable={true} onClose={onClose} open={true} key={'left search'} >
+            <Space>
+                <AutoComplete popupClassName="certain-category-search-dropdown" options={options}>
+                    <Input.Search placeholder="今天看点什么好呢..." onSearch={onSearch} enterButton />
+                </AutoComplete>
+            </Space>
+        </Drawer>
     )
 }
 

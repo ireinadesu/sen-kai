@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
-import { PlaySquareOutlined, LikeTwoTone } from '@ant-design/icons'
+import { PlaySquareOutlined, LikeTwoTone, SearchOutlined } from '@ant-design/icons'
 import { Layout, MenuProps, Menu } from 'antd'
 import { useLocation, useNavigate } from 'react-router-dom'
 
@@ -14,7 +14,7 @@ const SHeader: React.FC = (props: any) => {
 
     useEffect(() => {
         props.changeUrl({ currentUrl: location.pathname.slice(1) })
-    }, [props,location.pathname])
+    }, [props, location.pathname])
 
     const items: MenuProps['items'] = [
         {
@@ -36,20 +36,23 @@ const SHeader: React.FC = (props: any) => {
             label: '经典番剧',
             key: 'classicDrama',
             icon: <PlaySquareOutlined />,
+        },
+        {
+            label: '搜索',
+            key: 'search',
+            icon: <SearchOutlined />,
         }
     ]
 
     const onClick: MenuProps['onClick'] = (e: { key: any; }) => {
         props.changeUrl({ currentUrl: e.key })
-        router(e.key, { replace: true })
+        router(e.key, { replace: false })
     }
 
     return (
         <Layout.Header style={{ background: '#ffffff', borderBottom: ' 1px solid rgba(5, 5, 5, 0.06)' }}>
             <div className="logo" />
-            <div >
-                <Menu onClick={onClick} selectedKeys={[location.pathname.slice(1)]} mode="horizontal" items={items} />
-            </div>
+            <Menu onClick={onClick} selectedKeys={[location.pathname.slice(1)]} mode="horizontal" items={items} />
         </Layout.Header >
     )
 }
